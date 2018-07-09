@@ -6,54 +6,53 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
-    SQLiteDatabase db;
-    SQLiteOpenHelper openHelper;
-    Button _btnLogin, _btnRegister;
-    EditText _userLogin, _passwordLogin;
-    Cursor cursor;
+    private static final String TAG = "Login";
+    DatabaseHelper databaseHelper;
+    EditText unameLogin, passLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        openHelper = new DatabaseHelper(this);
-        db = openHelper.getReadableDatabase();
-        _btnLogin = (Button)findViewById(R.id.btnlogin);
-        _btnRegister = (Button)findViewById(R.id.regbtn);
-        _userLogin = (EditText)findViewById(R.id.userLogin);
-        _passwordLogin = (EditText)findViewById(R.id.passwordLogin);
-        _btnLogin.setOnClickListener(new View.OnClickListener() {
+        databaseHelper = new DatabaseHelper(this);
+        databaseHelper.addData("test", "12345");
+
+        Button login = (Button) findViewById(R.id.btnLogin);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = _userLogin.getText().toString();
-                String password = _passwordLogin.getText().toString();
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE "
-                        + DatabaseHelper.COL_2 + "=? AND " + DatabaseHelper.COL_3 + "=?";
-                cursor = db.rawQuery(query, new String[]{username, password});
-                if(cursor != null){
-                    if(cursor.getCount() > 0) {
-                        Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
-                    }else if(username.equals("") || password.equals("")) {
-                        Toast.makeText(getApplicationContext(), "Incorrect username/password. Try again!", Toast.LENGTH_LONG).show();
-                    }
-                }
-                startActivity(intent);
+                goToHomepage(v);
             }
         });
-       _btnRegister.setOnClickListener(new View.OnClickListener(){
+    }
 
-           @Override
-           public void onClick(View v) {
-               Intent intent = new Intent(Login.this, register.class);
-               startActivity(intent);
-           }
-       });
+    public void AddData(String username, String password){
+        boolean insertData = databaseHelper.addData(username, password);
+
+        if(insertData){
+            Toast.makeText(getApplicationContext(), "Data Successfully Inserted!", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Data Insertion FAILED!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void goToHomepage(View view){
+        unameLogin = (EditText)findViewById(R.id.editTextUname);
+        passLogin = (EditText)findViewById(R.id.editTextPass);
+
+        if(TextUtils.isEmpty(unameLogin.getText().toString()) == true || TextUtils.isEmpty(passLogin.getText().toString()) == true){
+            Intent homepage = new Intent(this, MainActivity.class);
+            homepage.putExtra("USERNAME", unameLogin.getText().toString());
+            startActivity(homepage);
+        }else{
+            Toast.makeText(getApplicationContext(), "Invalid Username/Password!", Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
-    tools:context=".Login">
+    tools:context=".Login"
+    android:background="@drawable/wallpaper">
 
     <ImageView
         android:id="@+id/imageView"
@@ -15,21 +15,19 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-
         app:srcCompat="@drawable/logo" />
 
     <Button
-        android:id="@+id/btnlogin"
-        android:layout_width="224dp"
+        android:id="@+id/btnLogin"
+        android:layout_width="144dp"
         android:layout_height="43dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="109dp"
-        android:background="@drawable/roundbutton"
-        android:text="Login" />
+        android:background="@drawable/login" />
 
     <Button
-        android:id="@+id/regbtn"
+        android:id="@+id/btnRegister"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -41,7 +39,7 @@
         android:textSize="15dp" />
 
     <EditText
-        android:id="@+id/userLogin"
+        android:id="@+id/editTextUname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -53,12 +51,12 @@
         android:textColor="#FFFFFF" />
 
     <EditText
-        android:id="@+id/passwordLogin"
+        android:id="@+id/editTextPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="190dp"
+        android:layout_marginBottom="213dp"
         android:background="@null"
         android:drawableLeft="@drawable/ic_action_password"
         android:ems="10"

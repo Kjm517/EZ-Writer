@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/wallpaper"
     tools:context=".register">
 
     <ImageView
@@ -20,24 +20,24 @@
     <EditText
         android:id="@+id/userReg"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_centerInParent="true"
         android:background="@null"
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:hint="Username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/regbtn"
-        android:layout_width="121dp"
+        android:layout_width="139dp"
         android:layout_height="46dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="113dp"
-        android:background="@drawable/roundbutton"
-        android:drawableRight="@drawable/ic_action_registered"
-        android:text="Register" />
+        android:layout_marginBottom="89dp"
+        android:background="@drawable/register"
+        />
 
     <EditText
         android:id="@+id/passReg"
@@ -45,12 +45,13 @@
         android:layout_height="43dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="181dp"
+        android:layout_marginBottom="199dp"
         android:background="@null"
         android:drawableLeft="@drawable/ic_action_password"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/regLogin"

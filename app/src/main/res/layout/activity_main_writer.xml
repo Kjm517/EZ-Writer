@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainWriter"
-    android:background="@drawable/bg">
+    android:background="@drawable/wallpaper">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -17,40 +18,58 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/myInputText"
         android:layout_width="309dp"
-        android:layout_height="319dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="117dp"
+        android:layout_height="222dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
         android:ems="10"
-        android:inputType="textMultiLine"
-        android:layout_marginLeft="39dp"
-        android:layout_alignParentLeft="true" />
+        android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/getExternalStorage"
         android:layout_width="108dp"
         android:layout_height="36dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="81dp"
-        android:layout_marginStart="77dp"
+        android:layout_marginBottom="43dp"
+        android:layout_marginStart="79dp"
         android:background="@drawable/roundbutton"
-        android:text="Save"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="77dp" />
+        android:text="Save" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="114dp"
+        android:id="@+id/saveExternalStorage"
+        android:layout_width="131dp"
         android:layout_height="38dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/button2"
-        android:layout_marginEnd="68dp"
-        android:background="@drawable/roundbutton"
-        android:text="Export"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="68dp" />
+        android:layout_below="@+id/getExternalStorage"
+        android:layout_marginEnd="53dp"
+        android:layout_marginTop="-81dp"
+        android:background="@drawable/download" />
+
+    <ImageView
+        android:id="@+id/camerabtn"
+        android:layout_width="102dp"
+        android:layout_height="56dp"
+        android:layout_alignStart="@+id/myInputText"
+        android:layout_below="@+id/imageView4"
+        app:srcCompat="@drawable/camera" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="135dp"
+        android:text="Add Image"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    <TextView android:id="@+id/response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:padding="5dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 </RelativeLayout>

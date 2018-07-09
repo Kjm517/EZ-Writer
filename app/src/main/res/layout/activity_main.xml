@@ -4,31 +4,40 @@
     android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	android:background="@drawable/bg">
+	android:background="@drawable/wallpaper">
 
 
     <ImageView
+        android:id="@+id/camerabtn2"
+        android:layout_width="93dp"
+        android:layout_height="68dp"
+        android:layout_alignBottom="@+id/nextbtn"
+        android:layout_alignStart="@+id/imageView3"
+        app:srcCompat="@drawable/camera" />
+
+    <ImageView
         android:id="@+id/btnSpeak"
-        android:layout_width="98dp"
-        android:layout_height="73dp"
-        android:layout_below="@+id/imageView3"
-        android:layout_toEndOf="@+id/textView"
+        android:layout_width="59dp"
+        android:layout_height="47dp"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="58dp"
         android:contentDescription="TODO"
         android:gravity="center"
         android:onClick="getSpeechInput"
-        android:src="@drawable/ic_mic"
-        android:layout_toRightOf="@+id/textView" />
+        android:src="@drawable/microphone" />
 
     <TextView
         android:id="@+id/txvResult"
         android:layout_width="300dp"
-        android:layout_height="207dp"
-        android:layout_below="@+id/btnSpeak"
+        android:layout_height="210dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="105dp"
+        android:background="#FFFFFF"
         android:textColor="#000000"
         android:textSize="26sp"
-        android:textStyle="normal"
-        android:background="#FFFFFF"/>
+        android:textStyle="normal" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -43,23 +52,24 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/imageView3"
-        android:layout_marginTop="140dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="139dp"
         android:text="Say Something"
         android:textAlignment="center"
+        android:textColor="#ffffff"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="165dp"
-        android:layout_height="38dp"
+        android:id="@+id/nextbtn"
+        android:layout_width="67dp"
+        android:layout_height="64dp"
+        android:layout_alignEnd="@+id/txvResult"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="37dp"
-        android:background="@drawable/confirm"
-        android:text="Confirm"
+        android:layout_marginBottom="19dp"
+        android:background="@drawable/next"
         android:textColor="#ffff" />
 
 </RelativeLayout>

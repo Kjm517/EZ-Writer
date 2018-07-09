@@ -34,7 +34,7 @@ public class register extends AppCompatActivity {
                 String userInput = _userReg.getText().toString();
                 String passInput= _passReg.getText().toString();
                 Intent intent = new Intent(register.this, Login.class);
-                insertData(userInput, passInput);
+                //insertData(userInput, passInput);
                 if(userInput.isEmpty() && passInput.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill in the missing details", Toast.LENGTH_LONG).show();
                 }else if(userInput.equals(_userReg)){
@@ -54,10 +54,10 @@ public class register extends AppCompatActivity {
             }
         });
     }
-    public void insertData(String username, String password){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.COL_2, username);
-        contentValues.put(DatabaseHelper.COL_3, password);
-        long id = db.insert(DatabaseHelper.TABLE_NAME, null, contentValues);
-    }
+//    public void insertData(String username, String password){
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(DatabaseHelper.COL_2, username);
+//        contentValues.put(DatabaseHelper.COL_3, password);
+//        long id = db.insert(DatabaseHelper., null, contentValues);
+//    }
 }
