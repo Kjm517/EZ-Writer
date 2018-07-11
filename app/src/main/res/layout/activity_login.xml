@@ -9,6 +9,17 @@
     android:background="@drawable/wallpaper">
 
     <ImageView
+        android:id="@+id/privacy3"
+        android:layout_width="59dp"
+        android:layout_height="47dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:contentDescription="TODO"
+        android:gravity="center"
+        android:src="@drawable/privacy" />
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="168dp"
         android:layout_height="194dp"
@@ -23,16 +34,16 @@
         android:layout_height="43dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="109dp"
+        android:layout_marginBottom="141dp"
         android:background="@drawable/login" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/btnLogin"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="-141dp"
         android:background="@null"
         android:text="Register Here"
         android:textColor="#FFFFFF"
@@ -61,7 +72,7 @@
         android:drawableLeft="@drawable/ic_action_password"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="#FFFFFF" />
 
 </RelativeLayout>

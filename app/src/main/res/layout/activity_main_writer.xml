@@ -20,12 +20,13 @@
     <EditText
         android:id="@+id/myInputText"
         android:layout_width="309dp"
-        android:layout_height="222dp"
+        android:layout_height="165dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
         android:ems="10"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textColor="#ffff"/>
 
     <Button
         android:id="@+id/getExternalStorage"
@@ -72,4 +73,16 @@
         android:layout_height="wrap_content" android:padding="5dp"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/filetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/myInputText"
+        android:layout_marginTop="186dp"
+        android:hint="Add title"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="#ffff"/>
 </RelativeLayout>

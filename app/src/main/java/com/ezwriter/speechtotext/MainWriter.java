@@ -1,8 +1,12 @@
 package com.ezwriter.speechtotext;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Camera;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,16 +21,20 @@ import android.os.Environment;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ezwriter.speechtotext.Camera.CameraDetails;
 
 public class MainWriter extends AppCompatActivity {
 
     ImageView _nextbtn;
-    Intent intent = new Intent(MainWriter.this, camera.class);
     EditText inputText;
+    EditText Ftitle;
     TextView response;
     Button saveButton,readButton;
+    TextHelper db;
 
-    private String filename = "SampleFile.txt";
+    private String filename = "MySampleText.txt";
     private String filepath = "MyFileStorage";
     File myExternalFile;
     String myData = "";
@@ -36,19 +44,22 @@ public class MainWriter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_writer);
 
-//        _nextbtn = (ImageView)findViewById(R.id.camerabtn);
-//        _nextbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(intent);
-//            }
-//        });
-
-        inputText = (EditText) findViewById(R.id.myInputText);
         response = (TextView) findViewById(R.id.response);
+        inputText = (EditText) findViewById(R.id.myInputText);
+        Ftitle = (EditText) findViewById(R.id.filetitle);
 
-        saveButton =
-                (Button) findViewById(R.id.saveExternalStorage);
+        //filename = Ftitle.getText().toString()+".pdf";
+
+        _nextbtn = (ImageView)findViewById(R.id.camerabtn);
+        _nextbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainWriter.this, CameraDetails.class);
+                startActivity(intent);
+            }
+        });
+
+        saveButton = (Button) findViewById(R.id.saveExternalStorage);
         saveButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +71,7 @@ public class MainWriter extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 inputText.setText("");
-                response.setText("SampleFile.txt saved to External Storage...");
+                Toast.makeText(getApplicationContext(), "Saved to External Storage", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -82,7 +93,8 @@ public class MainWriter extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 inputText.setText(myData);
-                response.setText("SampleFile.txt data retrieved from Internal Storage...");
+                Toast.makeText(getApplicationContext(), "Data retrieved from Internal Storage", Toast.LENGTH_LONG).show();
+
             }
         });
 

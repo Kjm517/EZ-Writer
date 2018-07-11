@@ -1,18 +1,11 @@
 package com.ezwriter.speechtotext;
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.media.Image;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +13,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements AccelerometerListener {
 
-	SQLiteDatabase db;
-	SQLiteOpenHelper openHelper;
-	Button nextbtn;
+	Button nextbtn, logout;
 	TextView txvResult;
-	ImageView cam;
+    //Session session;
+
+    TextHelper db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,29 +27,44 @@ public class MainActivity extends AppCompatActivity{
 		setContentView(R.layout.activity_main);
 		txvResult = (TextView) findViewById(R.id.txvResult);
 		nextbtn = (Button)findViewById(R.id.nextbtn);
+        logout = (Button)findViewById(R.id.logoutbtn);
+
+        //SESSION
+//        session = new Session(this);
+//        if(!session.loggedIn()){
+//            logout();
+//        }
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
 		nextbtn.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
+
 				Intent intent = new Intent(MainActivity.this, MainWriter.class);
 				startActivity(intent);
+
 			}
 		});
 
-		cam = (ImageView) findViewById(R.id.camerabtn2);
-		cam.setOnClickListener(new View.OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this, camera.class);
-				startActivity(intent);
-			}
-		});
 	}
 
-	public void insertData(String text) {
-		ContentValues contentValues = new ContentValues();
-		contentValues.put(DatabaseHelper.COL_2, text);
-		long id = db.insert(DatabaseHelper.TABLE_NAME, null, contentValues);
-	}
+    public void insertData () {
+        String input = txvResult.getText().toString();
+
+        db.addData(input);
+    }
+
+    private void logout(){
+        //session.setLoggedIn(false);
+        finish();
+        startActivity(new Intent(MainActivity.this, Login.class));
+    }
 
 	public void getSpeechInput(View view) {
 
@@ -83,6 +91,50 @@ public class MainActivity extends AppCompatActivity{
 				}
 				break;
 		}
-	}
+	};
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (AccelerometerManager.isSupported(this)) {
+            AccelerometerManager.startListening(this);
+        }
+    }
+
+    @Override
+    public void onAccelerationChanged(float x, float y, float z) {
+
+    }
+
+    @Override
+    public void onShake(float force) {
+        startActivity(new Intent(MainActivity.this, MainWriter.class));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+//Check device supported Accelerometer senssor or not
+        if (AccelerometerManager.isListening()) {
+
+//Start Accelerometer Listening
+            AccelerometerManager.stopListening();
+
+            Toast.makeText(this, "onStop Accelerometer Stopped", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (AccelerometerManager.isListening()) {
+            AccelerometerManager.stopListening();
+
+            Toast.makeText(this, "onDestroy Accelerometer Stopped", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
 
